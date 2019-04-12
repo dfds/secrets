@@ -1,0 +1,59 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Secrets\n\n\nSecrets, including credentials, are handled thus:\n\n\nSecret Management\n\n\nAWS Systems Manager Parameter Store\n\n\n\n\nUse a secure, scalable, hosted secrets management service (No servers to manage).\n\n\nStore configuration data and secure strings in hierarchies and track versions.\n\n\nControl and audit access at granular levels.\n\n\n\n\nConventions\n\n\n\n\nCapability (\u2248 namespaces in kubernetes)\n\n\nEnvironment (\nprod\n, test, uat, etc.)\n\n\nApplication (\u2248 pod)\n\n\nKey (name of secrets)\n\n\n\n\nConfiguration\n\n\nTargets\n\n\n\n\nEnvironment variable\n\n\nFiles (certificates, etc)\n\n\n\n\nSources:\n\n\n\n\nTerraform\n\n\nOther (manual), through self-service?\n\n\n\n\nX\n\n\n- Kubernetes Secrets\n\n\n+-----+      +-----------------+\n| SSM |      |    Kubernetes   |\n+-----+      |                 |\n   ^         | +-------------+ |\n   |         | |  namespace  | |\n   |         | | +---------+ | |\n   +---------|-|\n| secrets | |\u00a0|\n             | | +---------+ | |\n             +-----------------+\n\n\n\n\nExample kubernetes manifests", 
+            "title": "Secrets"
+        }, 
+        {
+            "location": "/#secrets", 
+            "text": "Secrets, including credentials, are handled thus:", 
+            "title": "Secrets"
+        }, 
+        {
+            "location": "/#secret-management", 
+            "text": "", 
+            "title": "Secret Management"
+        }, 
+        {
+            "location": "/#aws-systems-manager-parameter-store", 
+            "text": "Use a secure, scalable, hosted secrets management service (No servers to manage).  Store configuration data and secure strings in hierarchies and track versions.  Control and audit access at granular levels.", 
+            "title": "AWS Systems Manager Parameter Store"
+        }, 
+        {
+            "location": "/#conventions", 
+            "text": "Capability (\u2248 namespaces in kubernetes)  Environment ( prod , test, uat, etc.)  Application (\u2248 pod)  Key (name of secrets)", 
+            "title": "Conventions"
+        }, 
+        {
+            "location": "/#configuration", 
+            "text": "", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/#targets", 
+            "text": "Environment variable  Files (certificates, etc)", 
+            "title": "Targets"
+        }, 
+        {
+            "location": "/#sources", 
+            "text": "Terraform  Other (manual), through self-service?", 
+            "title": "Sources:"
+        }, 
+        {
+            "location": "/#x", 
+            "text": "", 
+            "title": "X"
+        }, 
+        {
+            "location": "/#-kubernetes-secrets", 
+            "text": "+-----+      +-----------------+\n| SSM |      |    Kubernetes   |\n+-----+      |                 |\n   ^         | +-------------+ |\n   |         | |  namespace  | |\n   |         | | +---------+ | |\n   +---------|-| | secrets | |\u00a0|\n             | | +---------+ | |\n             +-----------------+", 
+            "title": "- Kubernetes Secrets"
+        }, 
+        {
+            "location": "/#example-kubernetes-manifests", 
+            "text": "", 
+            "title": "Example kubernetes manifests"
+        }
+    ]
+}
