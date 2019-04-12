@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Secrets\n\n\nSecrets, including credentials, are handled thus:\n\n\nSecret Management\n\n\nAWS Systems Manager Parameter Store\n\n\n\n\nUse a secure, scalable, hosted secrets management service (No servers to manage).\n\n\nStore configuration data and secure strings in hierarchies and track versions.\n\n\nControl and audit access at granular levels.\n\n\n\n\nConventions\n\n\n\n\nCapability (\u2248 namespaces in kubernetes)\n\n\nEnvironment (\nprod\n, test, uat, etc.)\n\n\nApplication (\u2248 pod)\n\n\nKey (name of secrets)\n\n\n\n\nConfiguration\n\n\nTargets\n\n\n\n\nEnvironment variable\n\n\nFiles (certificates, etc)\n\n\n\n\nSources:\n\n\n\n\nTerraform\n\n\nOther (manual), through self-service?\n\n\n\n\nX\n\n\n- Kubernetes Secrets\n\n\n+-----+      +-----------------+\n| SSM |      |    Kubernetes   |\n+-----+      |                 |\n   ^         | +-------------+ |\n   |         | |  namespace  | |\n   |         | | +---------+ | |\n   +---------|-|\n| secrets | |\u00a0|\n             | | +---------+ | |\n             +-----------------+\n\n\n\n\nExample kubernetes manifests", 
+            "text": "Secrets\n\n\nSecrets, including credentials, are handled thus:\n\n\nGoals/Considerations/Requirements\n\n\n\n\nNO\n plain text secrets (credentials, or otherwise) in any codebase.\n\n\nPlay nice together with our current Kubernetes security setup (assumed roles and kiam) \n external link perhaps? \n.\n\n\nFacilitate our current take on Kubernetes (one capability/team/project/microservice ecosystem/namespace).\n\n\nAPI enabled.\n\n\nTerraform(able).\n\n\nFree (as in no subscription charge).\n\n\nNo code.\n\n\nUse Kubernetes concepts.\n\n\n others? \n\n\nDoes not need to emcompass other configurations (e.g. feature toggles)\n\n\nEasy to manage and deliver secrets\n\n\n\n\nKIAM - Integrate AWS IAM with Kubernetes\n\n\n\n\nAlternatives\n\n\nBelow is a list of some of the alternatives that have been tried/considered:\n\n\n\n\nSealed Secrets (secrets are encrypted and then included in the codebases)\n\n\nVault (free, highly scalable, unmanged)\n\n\nAWS Secrets Manager (paid)\n\n\nCloud KMS (paid)\n\n\nAzure Key Vault (paid)\n\n\n others? \n\n\n\n\n\n\nSecret Management\n\n\nWhat we would like to achieve is an easy way for application developers to store and manage secrets in secure fashion, while at the same time give applications access to the secrets through standard Kubernetes features, and without using custom code to fetch remote secrets on application startup.\n\n\nThis has led us to identity the following needs:\n\n\n\n\nA central cloud storage for secrets.\n\n\nKubernetes secrets, with automatic lifecycle management (create, update, delete).\n\n\nAWS IAM access level control, using roles-\n\n\n others? \n\n\n\n\nOverview of the current working solution:\n\n\n \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n \u2551 Secret Sources...\u00b9 \u2551\n \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n           \u2502\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2557   \u2502  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551 SSM\u00b2 \u2551\u25c4\u2500\u2500\u2518  \u2551               Kubernetes\u00b3             \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d      \u2551               \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e              \u2551\n   \u25b2          \u2551 \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557 \u2551\n   \u2502          \u2551 \u2551             Capability\u2074           \u2551 \u2551\n   \u2502          \u2551 \u2551             \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e            \u2551 \u2551\n   \u2502          \u2551 \u2551  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2557  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2557  \u2551 \u2551\n   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2551\u2500\u2551\u2500\u25ba\u2551  SM\u2077 \u2551\u2500\u25ba\u2551 SECRET\u2075 \u2551\u2500\u25ba\u2551 POD\u2076 \u2551  \u2551 \u2551\n              \u2551 \u2551  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d  \u2551 \u2551\n              \u2551 \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d \u2551\n              \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n\n\n\n\nComponents:\n\n\n\n\nSecret Sources\n could literally be anything, but will most likely be a combination of coordinates (i.e. URI) and credentials for either managed services provisioned using Terraform, or some external source (third-party managed).\n\n\nSSM\n is AWS Systems Manager Parameter Store (see info box below)\n\n\nOur \nKubernetes\n cluster.\n\n\nCapability\n is the current level of granularity regarding workspace allocation. This currently aligns with namespace in Kubernetes. \nWe need explanation here - maybe something about microservice ecosystem! \n\n\nSECRET\n is a collection of key/value pairs that are collected in a single Kubernetes secret. The secrets can then be configured in the pod (or deployment) manifest, in order for an application/microservice to gain access to their values. This can be as environment variable and/or file mounts. An example is listed below.\n\n\nThe \nPOD\n contains the application/microservice that whats access to the secret.\n\n\nSM\n, or \nSecret Manager\n.\n\n\n\n\n\n\nAWS Systems Manager Parameter Store\n\n\nThe \nParameter Store\n is a secure, scalable, and managed configuration store that allows storage of data in hierarchies and track versions. It integrates into other AWS offerings (include AWS Lambda), and offers control and audit access at granular levels.\n\n\n\n\nSecret Manager\n\n\nThe Secret Manager is an infrastructure component running in the same namespace as the \nPOD\u2076\n above, with AWS access rights (kiam) to pull secrets from \nSSM\u00b2\n.\n\n\nIt will, at regular intervals, pull secrets from \nSSM\u00b2\n according to access rights and \nconventions\n, and manage secrets according to these conventions. Thus keeping everything in sync.\n\n\n\n\nNB\n\n\nOnly secrets created by the Secret Manager are managed, all other secrets will be left untouched.\n\n\n\n\nConventions\n\n\nThe management of secrets are controlled by the use of conventions. We operate with the following conventions that will be used to synchronize secrets between system.\n\n\n\n\n\n\nCapability\n\n\nOur current scope for a workspace is the Capability, which roughly translates to a \n team/project/product \n that own an microservice ecosystem, which again (presently) translates to a namespace in Kubernetes.\n\n\n\n\n\n\nEnvironment\n\n\nIn order to operate with different environments \n YAGNI? \n, we reserve a placeholder for this. However, this will default to \nprod\n for now. \n Huh? \n\n\n\n\n\n\nApplication\n\n\nThe name of the application that requires secrets.\n\n\n\n\n\n\nSecret Key\n\n\nThe name of the secret\n\n\n\n\n\n\nTogether these four conventions, allow us to manage secrets in SSM, and propagate these SSM parameters (based on conventions and readily available attribute in Kubernetes) to PODs and applications in the form of Kubernetes secrets.\n\n\nAWS SSM Parameter Store\n\n\nSecrets are using the hierarchy availble in the Parameter Store to support the conventions.\n\n\n\n\nname: /capability/environment/application/key\n\n\nvalue: \nthe secret\n\n\n Required IAM policy \n\n\n\n\nKubernetes\n\n\nSecrets are created and maintained in Kubernetes based on the following convetions:\n\n\n\n\ntarget_namespace: capability\n\n\nsecret_name: environment_application_secret\n\n\ncontent:\n\n\nkey: value\n\n\nkey: value\n\n\n...\n\n\n\n\n\n\n\n\nConsuming Secrets in Kubernetes\n\n\nTargets\n\n\n\n\nEnvironment variable\n\n\nFiles (certificates, etc)\n\n\n\n\nExample kubernetes manifests", 
             "title": "Secrets"
         }, 
         {
@@ -11,24 +11,39 @@
             "title": "Secrets"
         }, 
         {
+            "location": "/#goalsconsiderationsrequirements", 
+            "text": "NO  plain text secrets (credentials, or otherwise) in any codebase.  Play nice together with our current Kubernetes security setup (assumed roles and kiam)   external link perhaps?  .  Facilitate our current take on Kubernetes (one capability/team/project/microservice ecosystem/namespace).  API enabled.  Terraform(able).  Free (as in no subscription charge).  No code.  Use Kubernetes concepts.   others?   Does not need to emcompass other configurations (e.g. feature toggles)  Easy to manage and deliver secrets   KIAM - Integrate AWS IAM with Kubernetes   Alternatives  Below is a list of some of the alternatives that have been tried/considered:   Sealed Secrets (secrets are encrypted and then included in the codebases)  Vault (free, highly scalable, unmanged)  AWS Secrets Manager (paid)  Cloud KMS (paid)  Azure Key Vault (paid)   others?", 
+            "title": "Goals/Considerations/Requirements"
+        }, 
+        {
             "location": "/#secret-management", 
-            "text": "", 
+            "text": "What we would like to achieve is an easy way for application developers to store and manage secrets in secure fashion, while at the same time give applications access to the secrets through standard Kubernetes features, and without using custom code to fetch remote secrets on application startup.  This has led us to identity the following needs:   A central cloud storage for secrets.  Kubernetes secrets, with automatic lifecycle management (create, update, delete).  AWS IAM access level control, using roles-   others?    Overview of the current working solution:   \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n \u2551 Secret Sources...\u00b9 \u2551\n \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n           \u2502\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2557   \u2502  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n\u2551 SSM\u00b2 \u2551\u25c4\u2500\u2500\u2518  \u2551               Kubernetes\u00b3             \u2551\n\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d      \u2551               \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e              \u2551\n   \u25b2          \u2551 \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557 \u2551\n   \u2502          \u2551 \u2551             Capability\u2074           \u2551 \u2551\n   \u2502          \u2551 \u2551             \u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e\u203e            \u2551 \u2551\n   \u2502          \u2551 \u2551  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2557  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2557  \u2551 \u2551\n   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2551\u2500\u2551\u2500\u25ba\u2551  SM\u2077 \u2551\u2500\u25ba\u2551 SECRET\u2075 \u2551\u2500\u25ba\u2551 POD\u2076 \u2551  \u2551 \u2551\n              \u2551 \u2551  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d  \u2551 \u2551\n              \u2551 \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d \u2551\n              \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d  Components:   Secret Sources  could literally be anything, but will most likely be a combination of coordinates (i.e. URI) and credentials for either managed services provisioned using Terraform, or some external source (third-party managed).  SSM  is AWS Systems Manager Parameter Store (see info box below)  Our  Kubernetes  cluster.  Capability  is the current level of granularity regarding workspace allocation. This currently aligns with namespace in Kubernetes.  We need explanation here - maybe something about microservice ecosystem!   SECRET  is a collection of key/value pairs that are collected in a single Kubernetes secret. The secrets can then be configured in the pod (or deployment) manifest, in order for an application/microservice to gain access to their values. This can be as environment variable and/or file mounts. An example is listed below.  The  POD  contains the application/microservice that whats access to the secret.  SM , or  Secret Manager .    AWS Systems Manager Parameter Store  The  Parameter Store  is a secure, scalable, and managed configuration store that allows storage of data in hierarchies and track versions. It integrates into other AWS offerings (include AWS Lambda), and offers control and audit access at granular levels.", 
             "title": "Secret Management"
         }, 
         {
-            "location": "/#aws-systems-manager-parameter-store", 
-            "text": "Use a secure, scalable, hosted secrets management service (No servers to manage).  Store configuration data and secure strings in hierarchies and track versions.  Control and audit access at granular levels.", 
-            "title": "AWS Systems Manager Parameter Store"
+            "location": "/#secret-manager", 
+            "text": "The Secret Manager is an infrastructure component running in the same namespace as the  POD\u2076  above, with AWS access rights (kiam) to pull secrets from  SSM\u00b2 .  It will, at regular intervals, pull secrets from  SSM\u00b2  according to access rights and  conventions , and manage secrets according to these conventions. Thus keeping everything in sync.   NB  Only secrets created by the Secret Manager are managed, all other secrets will be left untouched.", 
+            "title": "Secret Manager"
         }, 
         {
             "location": "/#conventions", 
-            "text": "Capability (\u2248 namespaces in kubernetes)  Environment ( prod , test, uat, etc.)  Application (\u2248 pod)  Key (name of secrets)", 
+            "text": "The management of secrets are controlled by the use of conventions. We operate with the following conventions that will be used to synchronize secrets between system.    Capability  Our current scope for a workspace is the Capability, which roughly translates to a   team/project/product   that own an microservice ecosystem, which again (presently) translates to a namespace in Kubernetes.    Environment  In order to operate with different environments   YAGNI?  , we reserve a placeholder for this. However, this will default to  prod  for now.   Huh?     Application  The name of the application that requires secrets.    Secret Key  The name of the secret    Together these four conventions, allow us to manage secrets in SSM, and propagate these SSM parameters (based on conventions and readily available attribute in Kubernetes) to PODs and applications in the form of Kubernetes secrets.", 
             "title": "Conventions"
         }, 
         {
-            "location": "/#configuration", 
+            "location": "/#aws-ssm-parameter-store", 
+            "text": "Secrets are using the hierarchy availble in the Parameter Store to support the conventions.   name: /capability/environment/application/key  value:  the secret   Required IAM policy", 
+            "title": "AWS SSM Parameter Store"
+        }, 
+        {
+            "location": "/#kubernetes", 
+            "text": "Secrets are created and maintained in Kubernetes based on the following convetions:   target_namespace: capability  secret_name: environment_application_secret  content:  key: value  key: value  ...", 
+            "title": "Kubernetes"
+        }, 
+        {
+            "location": "/#consuming-secrets-in-kubernetes", 
             "text": "", 
-            "title": "Configuration"
+            "title": "Consuming Secrets in Kubernetes"
         }, 
         {
             "location": "/#targets", 
@@ -36,24 +51,34 @@
             "title": "Targets"
         }, 
         {
-            "location": "/#sources", 
-            "text": "Terraform  Other (manual), through self-service?", 
-            "title": "Sources:"
-        }, 
-        {
-            "location": "/#x", 
-            "text": "", 
-            "title": "X"
-        }, 
-        {
-            "location": "/#-kubernetes-secrets", 
-            "text": "+-----+      +-----------------+\n| SSM |      |    Kubernetes   |\n+-----+      |                 |\n   ^         | +-------------+ |\n   |         | |  namespace  | |\n   |         | | +---------+ | |\n   +---------|-| | secrets | |\u00a0|\n             | | +---------+ | |\n             +-----------------+", 
-            "title": "- Kubernetes Secrets"
-        }, 
-        {
             "location": "/#example-kubernetes-manifests", 
             "text": "", 
             "title": "Example kubernetes manifests"
+        }, 
+        {
+            "location": "/application-developers/", 
+            "text": "Application Development \n Secrets\n\n\n \nTODO:\n A no-nonsense description of how to manage secrets for multiple applications in multiple environments \n\n\n\n\n How to create, update, and delete resources.\n\n\n Add UI/CLI/scripts for easily managing secrets (according to conventions). \n this should plug nicely into the whole saml2aws, if it's on the terminal \n\n\n How to setup Parameters as Terraform resources.\n\n\n A brief and to the point description of the secrets lifecycle. \n no ops details here \n\n\n Example(s) of how to access secrets in Kubernetes. \n \nenvFrom\n, \nenv\n, \nvolumnes\n \n \n are pod-presets too advanced?", 
+            "title": "Application Developers"
+        }, 
+        {
+            "location": "/application-developers/#application-development-secrets", 
+            "text": "TODO:  A no-nonsense description of how to manage secrets for multiple applications in multiple environments     How to create, update, and delete resources.   Add UI/CLI/scripts for easily managing secrets (according to conventions).   this should plug nicely into the whole saml2aws, if it's on the terminal    How to setup Parameters as Terraform resources.   A brief and to the point description of the secrets lifecycle.   no ops details here    Example(s) of how to access secrets in Kubernetes.    envFrom ,  env ,  volumnes      are pod-presets too advanced?", 
+            "title": "Application Development &amp; Secrets"
+        }, 
+        {
+            "location": "/sre/", 
+            "text": "Site Reliability Engineers \n Operations\n\n\n \nTODO:\n From Adam and Eve I suppose... \n\n\nResources\n\n\n\n\nhttps://hackernoon.com/a-few-tips-for-storing-secrets-using-aws-parameter-store-f03557c5cf1b\n\n\nhttps://github.com/segmentio/chamber\n\n\nhttps://github.com/energyhub/secretly", 
+            "title": "SRE"
+        }, 
+        {
+            "location": "/sre/#site-reliability-engineers-operations", 
+            "text": "TODO:  From Adam and Eve I suppose...", 
+            "title": "Site Reliability Engineers &amp; Operations"
+        }, 
+        {
+            "location": "/sre/#resources", 
+            "text": "https://hackernoon.com/a-few-tips-for-storing-secrets-using-aws-parameter-store-f03557c5cf1b  https://github.com/segmentio/chamber  https://github.com/energyhub/secretly", 
+            "title": "Resources"
         }
     ]
 }

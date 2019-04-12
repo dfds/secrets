@@ -271,16 +271,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#goalsconsiderationsrequirements" title="Goals/Considerations/Requirements" class="md-nav__link">
+    Goals/Considerations/Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#secret-management" title="Secret Management" class="md-nav__link">
     Secret Management
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secret-manager" title="Secret Manager" class="md-nav__link">
+    Secret Manager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conventions" title="Conventions" class="md-nav__link">
+    Conventions
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aws-systems-manager-parameter-store" title="AWS Systems Manager Parameter Store" class="md-nav__link">
-    AWS Systems Manager Parameter Store
+  <a href="#aws-ssm-parameter-store" title="AWS SSM Parameter Store" class="md-nav__link">
+    AWS SSM Parameter Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes" title="Kubernetes" class="md-nav__link">
+    Kubernetes
   </a>
   
 </li>
@@ -291,9 +319,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conventions" title="Conventions" class="md-nav__link">
-    Conventions
+  <a href="#consuming-secrets-in-kubernetes" title="Consuming Secrets in Kubernetes" class="md-nav__link">
+    Consuming Secrets in Kubernetes
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#targets" title="Targets" class="md-nav__link">
+    Targets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-kubernetes-manifests" title="Example kubernetes manifests" class="md-nav__link">
+    Example kubernetes manifests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -305,6 +353,30 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="application-developers/" title="Application Developers" class="md-nav__link">
+      Application Developers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="sre/" title="SRE" class="md-nav__link">
+      SRE
+    </a>
   </li>
 
     
@@ -329,16 +401,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#goalsconsiderationsrequirements" title="Goals/Considerations/Requirements" class="md-nav__link">
+    Goals/Considerations/Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#secret-management" title="Secret Management" class="md-nav__link">
     Secret Management
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secret-manager" title="Secret Manager" class="md-nav__link">
+    Secret Manager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conventions" title="Conventions" class="md-nav__link">
+    Conventions
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aws-systems-manager-parameter-store" title="AWS Systems Manager Parameter Store" class="md-nav__link">
-    AWS Systems Manager Parameter Store
+  <a href="#aws-ssm-parameter-store" title="AWS SSM Parameter Store" class="md-nav__link">
+    AWS SSM Parameter Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes" title="Kubernetes" class="md-nav__link">
+    Kubernetes
   </a>
   
 </li>
@@ -349,9 +449,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conventions" title="Conventions" class="md-nav__link">
-    Conventions
+  <a href="#consuming-secrets-in-kubernetes" title="Consuming Secrets in Kubernetes" class="md-nav__link">
+    Consuming Secrets in Kubernetes
   </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#targets" title="Targets" class="md-nav__link">
+    Targets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-kubernetes-manifests" title="Example kubernetes manifests" class="md-nav__link">
+    Example kubernetes manifests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -376,45 +496,128 @@
                 
                 <h1 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h1>
 <p>Secrets, including credentials, are handled thus:</p>
+<h2 id="goalsconsiderationsrequirements">Goals/Considerations/Requirements<a class="headerlink" href="#goalsconsiderationsrequirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>NO</strong> plain text secrets (credentials, or otherwise) in any codebase.</li>
+<li>Play nice together with our current Kubernetes security setup (assumed roles and kiam) <mark class="critic"> external link perhaps? </mark>.</li>
+<li>Facilitate our current take on Kubernetes (one capability/team/project/microservice ecosystem/namespace).</li>
+<li>API enabled.</li>
+<li>Terraform(able).</li>
+<li>Free (as in no subscription charge).</li>
+<li>No code.</li>
+<li>Use Kubernetes concepts.</li>
+<li><mark class="critic"> others? </mark></li>
+<li>Does not need to emcompass other configurations (e.g. feature toggles)</li>
+<li>Easy to manage and deliver secrets</li>
+</ul>
+<span class="critic comment">KIAM - Integrate AWS IAM with Kubernetes</span>
+<div class="admonition note">
+<p class="admonition-title">Alternatives</p>
+<p>Below is a list of some of the alternatives that have been tried/considered:</p>
+<ul>
+<li>Sealed Secrets (secrets are encrypted and then included in the codebases)</li>
+<li>Vault (free, highly scalable, unmanged)</li>
+<li>AWS Secrets Manager (paid)</li>
+<li>Cloud KMS (paid)</li>
+<li>Azure Key Vault (paid)</li>
+<li><mark class="critic"> others? </mark></li>
+</ul>
+</div>
 <h2 id="secret-management">Secret Management<a class="headerlink" href="#secret-management" title="Permanent link">&para;</a></h2>
-<h3 id="aws-systems-manager-parameter-store">AWS Systems Manager Parameter Store<a class="headerlink" href="#aws-systems-manager-parameter-store" title="Permanent link">&para;</a></h3>
+<p>What we would like to achieve is an easy way for application developers to store and manage secrets in secure fashion, while at the same time give applications access to the secrets through standard Kubernetes features, and without using custom code to fetch remote secrets on application startup.</p>
+<p>This has led us to identity the following needs:</p>
 <ul>
-<li>Use a secure, scalable, hosted secrets management service (No servers to manage).</li>
-<li>Store configuration data and secure strings in hierarchies and track versions.</li>
-<li>Control and audit access at granular levels.</li>
+<li>A central cloud storage for secrets.</li>
+<li>Kubernetes secrets, with automatic lifecycle management (create, update, delete).</li>
+<li>AWS IAM access level control, using roles-</li>
+<li><mark class="critic"> others? </mark></li>
 </ul>
+<p>Overview of the current working solution:</p>
+<div class="codehilite"><pre><span></span> ╔════════════════════╗
+ ║ Secret Sources...¹ ║
+ ╚════════════════════╝
+           │
+╔══════╗   │  ╔═══════════════════════════════════════╗
+║ SSM² ║◄──┘  ║               Kubernetes³             ║
+╚══════╝      ║               ‾‾‾‾‾‾‾‾‾‾              ║
+   ▲          ║ ╔═══════════════════════════════════╗ ║
+   │          ║ ║             Capability⁴           ║ ║
+   │          ║ ║             ‾‾‾‾‾‾‾‾‾‾            ║ ║
+   │          ║ ║  ╔══════╗  ╔═════════╗  ╔══════╗  ║ ║
+   └──────────║─║─►║  SM⁷ ║─►║ SECRET⁵ ║─►║ POD⁶ ║  ║ ║
+              ║ ║  ╚══════╝  ╚═════════╝  ╚══════╝  ║ ║
+              ║ ╚═══════════════════════════════════╝ ║
+              ╚═══════════════════════════════════════╝
+</pre></div>
+
+<p>Components:</p>
+<ol>
+<li><em>Secret Sources</em> could literally be anything, but will most likely be a combination of coordinates (i.e. URI) and credentials for either managed services provisioned using Terraform, or some external source (third-party managed).</li>
+<li><em>SSM</em> is AWS Systems Manager Parameter Store (see info box below)</li>
+<li>Our <em>Kubernetes</em> cluster.</li>
+<li><em>Capability</em> is the current level of granularity regarding workspace allocation. This currently aligns with namespace in Kubernetes. <mark class="critic">We need explanation here - maybe something about microservice ecosystem! </mark></li>
+<li><em>SECRET</em> is a collection of key/value pairs that are collected in a single Kubernetes secret. The secrets can then be configured in the pod (or deployment) manifest, in order for an application/microservice to gain access to their values. This can be as environment variable and/or file mounts. An example is listed below.</li>
+<li>The <em>POD</em> contains the application/microservice that whats access to the secret.</li>
+<li><em>SM</em>, or <a href="#secret-manager">Secret Manager</a>.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">AWS Systems Manager Parameter Store</p>
+<p>The <em>Parameter Store</em> is a secure, scalable, and managed configuration store that allows storage of data in hierarchies and track versions. It integrates into other AWS offerings (include AWS Lambda), and offers control and audit access at granular levels.</p>
+</div>
+<h2 id="secret-manager">Secret Manager<a class="headerlink" href="#secret-manager" title="Permanent link">&para;</a></h2>
+<p>The Secret Manager is an infrastructure component running in the same namespace as the <em>POD⁶</em> above, with AWS access rights (kiam) to pull secrets from <em>SSM²</em>.</p>
+<p>It will, at regular intervals, pull secrets from <em>SSM²</em> according to access rights and <a href="#conventions">conventions</a>, and manage secrets according to these conventions. Thus keeping everything in sync.</p>
+<div class="admonition info">
+<p class="admonition-title">NB</p>
+<p><em>Only secrets created by the Secret Manager are managed, all other secrets will be left untouched.</em></p>
+</div>
 <h2 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h2>
+<p>The management of secrets are controlled by the use of conventions. We operate with the following conventions that will be used to synchronize secrets between system.</p>
 <ul>
-<li>Capability (≈ namespaces in kubernetes)</li>
-<li>Environment (<strong>prod</strong>, test, uat, etc.)</li>
-<li>Application (≈ pod)</li>
-<li>Key (name of secrets)</li>
+<li>
+<p><strong>Capability</strong></p>
+<p>Our current scope for a workspace is the Capability, which roughly translates to a <mark class="critic"> team/project/product </mark> that own an microservice ecosystem, which again (presently) translates to a namespace in Kubernetes.</p>
+</li>
+<li>
+<p><strong>Environment</strong></p>
+<p>In order to operate with different environments <span class="critic comment"> YAGNI? </span>, we reserve a placeholder for this. However, this will default to <em>prod</em> for now. <span class="critic comment"> Huh? </span></p>
+</li>
+<li>
+<p><strong>Application</strong></p>
+<p>The name of the application that requires secrets.</p>
+</li>
+<li>
+<p><strong>Secret Key</strong></p>
+<p>The name of the secret</p>
+</li>
 </ul>
-<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
-<h1 id="targets">Targets<a class="headerlink" href="#targets" title="Permanent link">&para;</a></h1>
+<p>Together these four conventions, allow us to manage secrets in SSM, and propagate these SSM parameters (based on conventions and readily available attribute in Kubernetes) to PODs and applications in the form of Kubernetes secrets.</p>
+<h3 id="aws-ssm-parameter-store">AWS SSM Parameter Store<a class="headerlink" href="#aws-ssm-parameter-store" title="Permanent link">&para;</a></h3>
+<p>Secrets are using the hierarchy availble in the Parameter Store to support the conventions.</p>
+<ul>
+<li>name: /capability/environment/application/key</li>
+<li>value: <em>the secret</em></li>
+<li><mark class="critic"> Required IAM policy </mark></li>
+</ul>
+<h3 id="kubernetes">Kubernetes<a class="headerlink" href="#kubernetes" title="Permanent link">&para;</a></h3>
+<p>Secrets are created and maintained in Kubernetes based on the following convetions:</p>
+<ul>
+<li>target_namespace: capability</li>
+<li>secret_name: environment_application_secret</li>
+<li>content:<ul>
+<li>key: value</li>
+<li>key: value</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h2 id="consuming-secrets-in-kubernetes">Consuming Secrets in Kubernetes<a class="headerlink" href="#consuming-secrets-in-kubernetes" title="Permanent link">&para;</a></h2>
+<h3 id="targets">Targets<a class="headerlink" href="#targets" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Environment variable</li>
 <li>Files (certificates, etc)</li>
 </ul>
-<h2 id="sources">Sources:<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Terraform</li>
-<li>Other (manual), through self-service?</li>
-</ul>
-<h2 id="x">X<a class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
-<h2 id="-kubernetes-secrets">- Kubernetes Secrets<a class="headerlink" href="#-kubernetes-secrets" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>+-----+      +-----------------+
-| SSM |      |    Kubernetes   |
-+-----+      |                 |
-   ^         | +-------------+ |
-   |         | |  namespace  | |
-   |         | | +---------+ | |
-   +---------|-|&gt;| secrets | | |
-             | | +---------+ | |
-             +-----------------+
-</pre></div>
-
-<h2 id="example-kubernetes-manifests">Example kubernetes manifests<a class="headerlink" href="#example-kubernetes-manifests" title="Permanent link">&para;</a></h2>
+<h3 id="example-kubernetes-manifests">Example kubernetes manifests<a class="headerlink" href="#example-kubernetes-manifests" title="Permanent link">&para;</a></h3>
                 
                   
                 
@@ -431,6 +634,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+        
+          <a href="application-developers/" title="Application Developers" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Application Developers
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -13,6 +13,8 @@
         <meta name="description" content="Secrets, credentials, and other cloak-and-dagger stuff">
       
       
+        <link rel="canonical" href="https://dfds.github.io/secrets/application-developers/">
+      
       
         <meta name="author" content="thfis">
       
@@ -35,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="/secrets/assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-0.17.5, mkdocs-material-2.9.4">
     
     
       
-        <title>Secrets</title>
+        <title>Application Developers - Secrets</title>
       
     
     
-      <link rel="stylesheet" href="/secrets/assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="/secrets/assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -55,7 +57,7 @@
       
     
     
-      <script src="/secrets/assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -64,9 +66,9 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="/secrets/assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="/secrets/stylesheets/critic.css">
+      <link rel="stylesheet" href="../stylesheets/critic.css">
     
     
   </head>
@@ -104,6 +106,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#application-development-secrets" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -126,7 +132,7 @@
                 Secrets
               </span>
               <span class="md-header-nav__topic">
-                
+                Application Developers
               </span>
             
           
@@ -243,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/secrets/" title="Secrets" class="md-nav__link">
+    <a href=".." title="Secrets" class="md-nav__link">
       Secrets
     </a>
   </li>
@@ -253,11 +259,20 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="/secrets/application-developers/" title="Application Developers" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Application Developers" class="md-nav__link md-nav__link--active">
       Application Developers
     </a>
+    
   </li>
 
     
@@ -267,7 +282,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/secrets/sre/" title="SRE" class="md-nav__link">
+    <a href="../sre/" title="SRE" class="md-nav__link">
       SRE
     </a>
   </li>
@@ -280,12 +295,42 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
-
+                
+                  <a href="https://github.com/dfds/secrets/edit/master/docs/application-developers.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="application-development-secrets">Application Development &amp; Secrets<a class="headerlink" href="#application-development-secrets" title="Permanent link">&para;</a></h1>
+<p><mark class="critic"> <strong>TODO:</strong> A no-nonsense description of how to manage secrets for multiple applications in multiple environments </mark></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> How to create, update, and delete resources.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Add UI/CLI/scripts for easily managing secrets (according to conventions). <mark class="critic"> this should plug nicely into the whole saml2aws, if it's on the terminal </mark></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> How to setup Parameters as Terraform resources.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> A brief and to the point description of the secrets lifecycle. <mark class="critic"> no ops details here </mark></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Example(s) of how to access secrets in Kubernetes. <mark class="critic"> <code>envFrom</code>, <code>env</code>, <code>volumnes</code> </mark> <span class="critic comment"> are pod-presets too advanced? </span></li>
+</ul>
+                
+                  
+                
+              
               
                 
 
@@ -298,6 +343,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Secrets" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Secrets
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../sre/" title="SRE" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                SRE
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -318,9 +398,9 @@
       
     </div>
     
-      <script src="/secrets/assets/javascripts/application.5c3774b5.js"></script>
+      <script src="../assets/javascripts/application.5c3774b5.js"></script>
       
-      <script>app.initialize({version:"0.17.5",url:{base:"/secrets"}})</script>
+      <script>app.initialize({version:"0.17.5",url:{base:".."}})</script>
       
     
     
