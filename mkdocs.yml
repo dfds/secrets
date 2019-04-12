@@ -1,0 +1,46 @@
+# Project information
+site_name: Secrets
+site_description: Secrets, credentials, and other cloak-and-dagger stuff
+site_author: thfis
+site_url: 'https://dfds.github.io/secrets/'
+
+# Repository
+repo_name: 'dfds/secrets'
+repo_url: 'https://github.com/dfds/secrets'
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  logo:
+    icon: security
+
+markdown_extensions:
+- admonition
+- codehilite:
+    guess_lang: false
+    linenums: false
+- footnotes
+- toc:
+    permalink: true
+- pymdownx.caret
+- pymdownx.critic
+- pymdownx.details
+- pymdownx.inlinehilite
+- pymdownx.magiclink
+- pymdownx.mark
+- pymdownx.smartsymbols
+- pymdownx.superfences
+- pymdownx.tasklist:
+    custom_checkbox: true
+
+extra_css:
+  - 'stylesheets/critic.css'
+
+pages:
+- Secrets: index.md
+- Application Developers: application-developers.md
+- SRE: sre.md
+
+

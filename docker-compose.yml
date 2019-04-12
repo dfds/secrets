@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  mkdocs:
+    container_name: docs
+    image: squidfunk/mkdocs-material
+    ports:
+      - 8000:8000
+    volumes:
+      - ${PWD}:/docs
