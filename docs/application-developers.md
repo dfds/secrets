@@ -8,3 +8,10 @@
 - [ ] A brief and to the point description of the secrets lifecycle. {== no ops details here ==}
 - [ ] Example(s) of how to access secrets in Kubernetes. {== `envFrom`, `env`, `volumnes` ==} {>> are pod-presets too advanced? <<}
 
+!!! info "mps - manage paramater store from cli"
+    ```bash
+    $ curl -sSL -o mps https://raw.githubusercontent.com/dfds/secrets/master/scripts/mps
+    $ chmod +x mps
+    $ ./mps put -c p-project -a papp -o key1=value1 key2=value2
+    ```
+

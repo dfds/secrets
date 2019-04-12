@@ -1,0 +1,135 @@
+#!/bin/bash
+##
+## Usage: mps <command> [options]
+##
+## Commands:
+##
+##      ls      list available parameters
+##
+##      put     create or update parameters
+##          --capability <capability_name>
+##          [--environment <environment_name=prod>]
+##          --application <application_name>
+##          [--overwrite]
+##          <key1=value1 key2=value2 ...>
+##
+##      rm      remove parameter
+##          <name>
+##
+
+DEFAULT_ENVIRONMENT="prod"
+
+usage() {
+  [[ "${*}" ]] && echo "${0}: ${*}" && echo
+  sed -n '/^##/,/^$/{/^$/q;s/^## \{0,1\}//p;}' "${0}"
+  exit 2
+} 2>/dev/null
+
+[[ -n "${DEBUG}" ]] && set -o xtrace
+
+set -o errexit
+set -o pipefail
+
+function hello() {
+    account_id=$(aws sts get-caller-identity --query "Account" --output text)
+    echo "mps -- manage parameter store for AccountID: ${account_id}"
+    echo
+}
+
+function list() {
+    hello
+
+    parameters=$(aws ssm describe-parameters --query "Parameters[*].Name" --output text | tr '\t' ' ')
+
+    aws ssm get-parameters --names ${parameters} --query "Parameters[*].[Name,Value]" --with-decryption --output text \
+        | tr '\t' '/' \
+        | awk -F '/' 'BEGIN { print "NAME|CAPABILITY|ENVIRONMENT|APPLICATION|KEY|VERSION" } { print "/" $2 "/" $3 "/" $4 "/" $5 "|" $2 "|" $3 "|" $4 "|" $5 "|" $6; }' \
+        | column -s '|' -t
+}
+
+function put() {
+    kv=()
+    while [[ $# -gt 0 ]]
+    do
+        key=$1
+
+        case ${key} in
+            -c|--capability)
+                capability=$2
+                shift
+                shift
+                ;;
+            -e|--environment)
+                environment=$2
+                shift
+                shift
+                ;;
+            -a|--application)
+                application=$2
+                shift
+                shift
+                ;;
+            -o|--overwrite)
+                overwrite="yes"
+                shift
+                ;;
+            *)
+                kv+=("$1")
+                shift
+                ;;
+        esac
+    done
+
+    if [[ -z "${capability}" ]]; then
+        usage "Capability is required"
+    fi
+    if [[ -z "${application}" ]]; then
+        usage "Application is required"
+    fi
+    if [[ -z "${environment}" ]]; then
+        environment=${DEFAULT_ENVIRONMENT}
+    fi
+
+    args="--type SecureString"
+    if [[ "${overwrite}" = "yes" ]]; then
+        args="${args} --overwrite"
+    fi
+
+    hello
+
+    for k in "${kv[@]}"; do
+        key=${k%%=*}
+        value=${k#*=}
+
+        name="/${capability}/${environment}/${application}/${key}"
+
+        echo "Putting ${name}"
+
+        aws ssm put-parameter ${args} --name ${name} --value ${value} --output text
+    done
+}
+
+function remove() {
+    [[ ${#} -eq 0 ]] && usage "Parameter name missing"
+
+    aws ssm delete-parameters --name $@
+}
+
+[[ ${#} -eq 0 ]] && usage "Command missing"
+
+command=$1
+case ${command} in
+    ls)
+        list
+        ;;
+    put)
+        shift
+        put $@
+        ;;
+    rm)
+        shift
+        remove $@
+        ;;
+    *)
+        usage "Unknown command: ${command}"
+esac
