@@ -327,6 +327,14 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> A brief and to the point description of the secrets lifecycle. <mark class="critic"> no ops details here </mark></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Example(s) of how to access secrets in Kubernetes. <mark class="critic"> <code>envFrom</code>, <code>env</code>, <code>volumnes</code> </mark> <span class="critic comment"> are pod-presets too advanced? </span></li>
 </ul>
+<div class="admonition info">
+<p class="admonition-title">mps - manage paramater store from cli</p>
+<div class="codehilite"><pre><span></span>$ curl -sSL -o mps https://raw.githubusercontent.com/dfds/secrets/master/scripts/mps
+$ chmod +x mps
+$ ./mps put -c p-project -a papp -o <span class="nv">key1</span><span class="o">=</span>value1 <span class="nv">key2</span><span class="o">=</span>value2
+</pre></div>
+
+</div>
                 
                   
                 
