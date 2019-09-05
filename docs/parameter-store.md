@@ -1,10 +1,9 @@
-# Site Reliability Engineers & Operations
+# Parameter Store
 
-## Current soluton: Parameter store
-For now we are utilizing AWS systems manager - parameter store for our secrets.
-It is a free fully managed solution. No charge and no patching etc to do from our side.
+The __[AWS Systems Manager Parameter Store](https://console.aws.amazon.com/systems-manager/parameters)__ is a secure, scalable, and managed configuration store that allows storage of data in hierarchies and track versions. It integrates into other AWS offerings (include AWS Lambda), and off
 
-## Things to consider
+## Possible Limitations
+
 As this service provides minimun effort from our side and comes free of charge there is bound to be downsides.
 The downside is that AWS put some hard limits to the service.
 
@@ -14,8 +13,6 @@ The downside is that AWS put some hard limits to the service.
 
 The community also suggest that there is a limit to how often and how many secrets that can be read from parameter store.
 These throttles should be investigated or at least be kept in mind in case we run into problems which could be caused by this.
-
-{== **TODO:** From Adam and Eve I suppose... ==}
 
 ## Resources
 

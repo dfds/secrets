@@ -2,10 +2,7 @@ version: '3'
 
 services:
   mkdocs:
-    build:
-      context: .
-    container_name: docs
-    #image: squidfunk/mkdocs-material:4.1.2
+    image: squidfunk/mkdocs-material:4.1.2
     ports:
       - 8000:8000
     volumes:

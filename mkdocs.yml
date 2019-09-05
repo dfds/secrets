@@ -3,18 +3,22 @@ site_name: Secrets
 site_description: Secrets, credentials, and other cloak-and-dagger stuff
 site_author: thfis
 site_url: 'https://dfds.github.io/secrets/'
+copyright: DFDS A/S
 
 # Repository
-repo_name: 'dfds/secrets'
+repo_name: 'Secrets'
 repo_url: 'https://github.com/dfds/secrets'
 
 theme:
   name: material
+  custom_dir: theme
   palette:
     primary: indigo
     accent: indigo
   logo:
     icon: security
+  feature:
+    tabs: true
 
 markdown_extensions:
 - admonition
@@ -38,9 +42,16 @@ markdown_extensions:
 extra_css:
   - 'stylesheets/critic.css'
 
-pages:
-- Secrets: index.md
-- Application Developers: application-developers.md
-- SRE: sre.md
+nav:
+- index.md
+- Solution:
+  - solution.md
+  - parameter-store.md
+- For Developers:
+  - setup.md
+  - usage.md
 
-
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/dfds'
