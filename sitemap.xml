@@ -6,17 +6,22 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://dfds.github.io/secrets/installation/</loc>
+     <loc>https://dfds.github.io/secrets/solution/</loc>
      <lastmod>2019-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://dfds.github.io/secrets/sre/</loc>
+     <loc>https://dfds.github.io/secrets/parameter-store/</loc>
      <lastmod>2019-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://dfds.github.io/secrets/developers/</loc>
+     <loc>https://dfds.github.io/secrets/setup/</loc>
+     <lastmod>2019-09-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://dfds.github.io/secrets/usage/</loc>
      <lastmod>2019-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>

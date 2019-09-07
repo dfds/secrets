@@ -13,7 +13,7 @@
         <meta name="description" content="Secrets, credentials, and other cloak-and-dagger stuff">
       
       
-        <link rel="canonical" href="https://dfds.github.io/secrets/installation/">
+        <link rel="canonical" href="https://dfds.github.io/secrets/setup/">
       
       
         <meta name="author" content="thfis">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Installation - Secrets</title>
+        <title>Setup - Secrets</title>
       
     
     
@@ -110,7 +110,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#installation" tabindex="1" class="md-skip">
+      <a href="#setup" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -135,7 +135,7 @@
               Secrets
             </span>
             <span class="md-header-nav__topic">
-              Installation
+              Setup
             </span>
           
         </div>
@@ -202,25 +202,47 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href=".." title="Secrets" class="md-tabs__link md-tabs__link--active">
-        Secrets
+      <a href=".." title="Introduction" class="md-tabs__link">
+        Introduction
       </a>
     
   </li>
 
       
         
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../solution/" title="Solution" class="md-tabs__link">
+          Solution
+        </a>
+      
+    </li>
+  
+
       
         
+  
+  
+    <li class="md-tabs__item">
       
-        
+        <a href="./" title="For Developers" class="md-tabs__link md-tabs__link--active">
+          For Developers
+        </a>
+      
+    </li>
+  
+
       
     </ul>
   </div>
@@ -271,8 +293,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Secrets" class="md-nav__link">
-      Secrets
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
     </a>
   </li>
 
@@ -280,6 +302,75 @@
       
       
       
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Solution
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Solution
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../solution/" title="Solution" class="md-nav__link">
+      Solution
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../parameter-store/" title="Parameter Store" class="md-nav__link">
+      Parameter Store
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      For Developers
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        For Developers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
 
   
 
@@ -292,11 +383,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Installation
+        Setup
       </label>
     
-    <a href="./" title="Installation" class="md-nav__link md-nav__link--active">
-      Installation
+    <a href="./" title="Setup" class="md-nav__link md-nav__link--active">
+      Setup
     </a>
     
       
@@ -310,16 +401,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#full-description" title="Full description" class="md-nav__link">
-    Full description
+  <a href="#full-description" title="Full Description" class="md-nav__link">
+    Full Description
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aws-iam-role" title="AWS IAM Role" class="md-nav__link">
-    AWS IAM Role
+  <a href="#the-aws-iam-role" title="The AWS IAM Role" class="md-nav__link">
+    The AWS IAM Role
   </a>
   
 </li>
@@ -346,28 +437,21 @@
     
   </li>
 
-    
-      
-      
-      
+        
+          
+          
+          
 
 
   <li class="md-nav__item">
-    <a href="../sre/" title="SRE" class="md-nav__link">
-      SRE
+    <a href="../usage/" title="Usage" class="md-nav__link">
+      Usage
     </a>
   </li>
 
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../developers/" title="Developers" class="md-nav__link">
-      Developers
-    </a>
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -392,16 +476,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#full-description" title="Full description" class="md-nav__link">
-    Full description
+  <a href="#full-description" title="Full Description" class="md-nav__link">
+    Full Description
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aws-iam-role" title="AWS IAM Role" class="md-nav__link">
-    AWS IAM Role
+  <a href="#the-aws-iam-role" title="The AWS IAM Role" class="md-nav__link">
+    The AWS IAM Role
   </a>
   
 </li>
@@ -434,50 +518,33 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dfds/secrets/edit/master/docs/installation.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/dfds/secrets/edit/master/docs/setup.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+                <h1 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h1>
+<p>In order to tage advantage of the Secret Manager follow the steps below. To prepare an alternative setup procedure see the <a href="#full-description">Full Description</a>.</p>
 <div class="admonition important">
-<p class="admonition-title">TL;DR: Installation</p>
-<p>Here are the steps needed to install the SecretManager:</p>
+<p class="admonition-title">Installation</p>
+<p>Here are the steps needed to install the Secret Manager:</p>
 <ul>
-<li>Download <a href="../install.sh">install.sh</a>.</li>
-<li>Login (using <code>saml2aws</code>) into capability of choice.</li>
-<li>Run <code>./install.sh</code>.</li>
+<li>Download the <a href="../install.sh">install.sh</a>.</li>
+<li>Use <code>saml2aws</code> to log in to the capability of choice.</li>
+<li>Run the installation script: <code>./install.sh</code>.</li>
 </ul>
 </div>
-<hr />
-<h2 id="full-description">Full description<a class="headerlink" href="#full-description" title="Permanent link">&para;</a></h2>
-<p>In order for the SecretManager to run it needs read access to Parameter Store through a AWS IAM role, and access to manage secrets in Kubernetes using RBAC.</p>
-<ul>
-<li>An AWS IAM Role with:<ul>
-<li>A trust relationship (assume role policy document) to <code>arn:aws:iam::738063116313:role/eks-hellman-kiam-server</code>.</li>
-<li>A policy document with read access to Parameter Store</li>
-</ul>
-</li>
-<li>A Kubernetes service account RBAC rights to the <code>secrets</code> resource <ul>
-<li>resources: ["secrets"]
-  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]</li>
-</ul>
-</li>
-</ul>
-<p>This guide describes how to gain direct access to AWS resources (here Parameter Store for secrets) from within services running in Kubernetes. </p>
-<blockquote>
-<p><strong>NOTE</strong>: An exception to the rule are RDS provisioned databases (postgres, etc.), which are currently accessed by (1) exposing them publicly, (2) requiring TLS, (3), and using standard database connection strings.</p>
-</blockquote>
-<p>In order to gain acces to an AWS resource the following needs to be in place:</p>
+<h2 id="full-description">Full Description<a class="headerlink" href="#full-description" title="Permanent link">&para;</a></h2>
+<p>In order for the Secret Manager to function, it needs:</p>
 <ol>
-<li>An AWS IAM role:<ul>
-<li>with access to perform the required action on the particular resource.</li>
-<li>with a trust relationship to the AWS account running the Kubernetes cluster.</li>
-</ul>
-</li>
-<li>The above role ARN (Amazon Resource Name) annotated on the POD that requires access.</li>
+<li>Read access to the Parameter Store through an AWS IAM role</li>
+<li>Access to manage secrets in Kubernetes using RBAC.</li>
 </ol>
-<h3 id="aws-iam-role">AWS IAM Role<a class="headerlink" href="#aws-iam-role" title="Permanent link">&para;</a></h3>
-<p>The new role requires two policy documents:</p>
-<p>The <strong>assume role policy document</strong> (or trust relationship) that allows the Kubernetes cluster to assume the role:</p>
+<h3 id="the-aws-iam-role">The AWS IAM Role<a class="headerlink" href="#the-aws-iam-role" title="Permanent link">&para;</a></h3>
+<p>In order to read parameters from the Parameter Store, we need to create an AWS IAM Role with the following policies:</p>
+<ul>
+<li>A trust relationship (assume role policy) to <code>arn:aws:iam::738063116313:role/eks-hellman-kiam-server</code>, in order for kiam to be able to perform actions on behalf of us.</li>
+<li>A policy with read access to Parameter Store</li>
+</ul>
+<p>Below is the <strong>assume role policy document</strong> (or trust relationship) that allows the Kubernetes cluster to assume the role:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
   <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -493,7 +560,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>and the specific <strong>policy document</strong> with read access to parameters stored:</p>
+<p>and the specific <strong>policy document</strong> with read access to Parameters Store:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
   <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -511,67 +578,84 @@
 </pre></div>
 
 <h3 id="kubernetes-manifests">Kubernetes Manifests<a class="headerlink" href="#kubernetes-manifests" title="Permanent link">&para;</a></h3>
-<p><strong>It is only necessary to annotate the deployment with the role ARN noted above.</strong></p>
-<p>Abridged example of a <code>deployment.yaml</code> manifest:</p>
+<p>In order for the Secret Manager to be able to manage Kubernetes secrets, we need:</p>
+<ol>
+<li>
+<p>To annotate the Secret Manager <code>POD</code> with the ARN of the AWS IAM Role described in the above section (see the first highlighted line in the <code>deployment.yaml</code> manifest below):</p>
 <div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
 <span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">selector</span><span class="p">:</span>
+<span class="nt">selector</span><span class="p">:</span>
     <span class="nt">matchLabels</span><span class="p">:</span>
-      <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
-  <span class="nt">template</span><span class="p">:</span>
+    <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
+<span class="nt">template</span><span class="p">:</span>
     <span class="nt">metadata</span><span class="p">:</span>
-      <span class="nt">labels</span><span class="p">:</span>
+    <span class="nt">labels</span><span class="p">:</span>
         <span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
-      <span class="nt">annotations</span><span class="p">:</span>
+    <span class="nt">annotations</span><span class="p">:</span>
 <span class="hll">        <span class="nt">iam.amazonaws.com/role</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">arn:aws:iam::153642329677:role/secrets</span>
 </span>    <span class="nt">spec</span><span class="p">:</span>
-      <span class="nt">serviceAccountName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-sa</span>
-      <span class="nt">containers</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
-        <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">thofisch/secrets:v0.2.1</span>
-        <span class="nt">resources</span><span class="p">:</span>
-          <span class="nt">limits</span><span class="p">:</span>
+<span class="hll">    <span class="nt">serviceAccountName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-sa</span>
+</span>    <span class="nt">containers</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secrets</span>
+        <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">thofisch/secrets:v0.2.1</span>
+        <span class="l l-Scalar l-Scalar-Plain">resources</span><span class="p p-Indicator">:</span>
+        <span class="nt">limits</span><span class="p">:</span>
             <span class="nt">memory</span><span class="p">:</span> <span class="s">&quot;128Mi&quot;</span>
             <span class="nt">cpu</span><span class="p">:</span> <span class="s">&quot;500m&quot;</span>
         <span class="nt">ports</span><span class="p">:</span>
         <span class="p p-Indicator">-</span> <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
         <span class="nt">env</span><span class="p">:</span>
         <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">AWS_DEFAULT_REGION</span>
-          <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eu-central-1</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eu-central-1</span>
         <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">KUBERNETES_NAMESPACE</span>
-          <span class="nt">valueFrom</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span>
             <span class="nt">fieldRef</span><span class="p">:</span>
-              <span class="nt">fieldPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">metadata.namespace</span>
-<span class="nn">---</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
+            <span class="nt">fieldPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">metadata.namespace</span>
+</pre></div>
+
+</li>
+<li>
+<p>To create a Kubernetes <code>Role</code> with "full access" to Kubernetes Secrets:</p>
+<div class="codehilite"><pre><span></span><span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
 <span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
 <span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-role</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-role</span>
 <span class="nt">rules</span><span class="p">:</span>
 <span class="p p-Indicator">-</span> <span class="nt">apiGroups</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;&quot;</span><span class="p p-Indicator">]</span> <span class="c1"># &quot;&quot; indicates the core API group</span>
-  <span class="nt">resources</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;secrets&quot;</span><span class="p p-Indicator">]</span>
-  <span class="nt">verbs</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;watch&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;create&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;update&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;patch&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;delete&quot;</span><span class="p p-Indicator">]</span>
-<span class="nn">---</span>
-<span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">resources</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;secrets&quot;</span><span class="p p-Indicator">]</span>
+<span class="nt">verbs</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;get&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;list&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;watch&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;create&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;update&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;patch&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;delete&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+
+</li>
+<li>
+<p>Create a Kubernetes <code>ServiceAccount</code> to be used by the Secret Manager <code>POD</code> (see the second highlighted line in the <code>deployment.yaml</code> manifest above):</p>
+<div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
 <span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-sa</span>
-<span class="nn">---</span>
-<span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-sa</span>
+</pre></div>
+
+</li>
+<li>
+<p>Connect the Kubernetes <code>Role</code> and <code>ServiceAccount</code> using a <code>RoleBinding</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
 <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RoleBinding</span>
 <span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-role-binding</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-role-binding</span>
 <span class="nt">roleRef</span><span class="p">:</span>
-  <span class="nt">apiGroup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
-  <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-role</span>
+<span class="nt">apiGroup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Role</span>
+<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-role</span>
 <span class="nt">subjects</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-sa</span>
+<span class="p p-Indicator">-</span> <span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-sa</span>
 </pre></div>
+
+</li>
+</ol>
                 
                   
                 
@@ -592,7 +676,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href=".." title="Secrets" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../parameter-store/" title="Parameter Store" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -601,19 +685,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Secrets
+                Parameter Store
               </span>
             </div>
           </a>
         
         
-          <a href="../sre/" title="SRE" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../usage/" title="Usage" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                SRE
+                Usage
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
