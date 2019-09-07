@@ -2,17 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://dfds.github.io/secrets/</loc>
-     <lastmod>2019-04-13</lastmod>
+     <lastmod>2019-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://dfds.github.io/secrets/application-developers/</loc>
-     <lastmod>2019-04-13</lastmod>
+     <loc>https://dfds.github.io/secrets/installation/</loc>
+     <lastmod>2019-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://dfds.github.io/secrets/sre/</loc>
-     <lastmod>2019-04-13</lastmod>
+     <lastmod>2019-09-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://dfds.github.io/secrets/developers/</loc>
+     <lastmod>2019-09-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
